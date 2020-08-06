@@ -12,7 +12,7 @@ test("Fills in and submits form", () => {
   const firstNameInput = screen.getByPlaceholderText(/first/i);
   const lastNameInput = screen.getByPlaceholderText(/last/i);
   const emailInput = screen.getByPlaceholderText(/email/i);
-  const messageInput = screen.getByPlaceholderText(/message/i);
+  const messageInput = screen.getByPlaceholderText(/Message/i);
 
   fireEvent.change(firstNameInput, { target: { value: 'Jonathan' } } );
   fireEvent.change(lastNameInput, { target: { value: 'Warner' } } );
@@ -22,6 +22,6 @@ test("Fills in and submits form", () => {
   const submitBtn = screen.getByRole('button', { type: /submit/i} );
 
   fireEvent.click(submitBtn);
-
+  
   expect(screen.getByText(/Jonathan/i)).toBeInTheDocument(); 
 }); 
