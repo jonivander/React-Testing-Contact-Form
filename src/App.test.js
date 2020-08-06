@@ -1,12 +1,12 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, getByText } from "@testing-library/react";
 import App from "./App";
 
 test("renders App without crashing", () => {
   render(<App />);
 });
 
-test("Fills in and submits form", () => {
+test("Fills in and submits form", async () => {
   render(<App />);
 
   const firstNameInput = screen.getByPlaceholderText(/first/i);
@@ -23,5 +23,8 @@ test("Fills in and submits form", () => {
 
   fireEvent.click(submitBtn);
   
+  const nameRender = await screen.findByTestId(/card/i);
+  expect(nameRender).toBeInTheDocument();
+
   expect(screen.getByText(/Jonathan/i)).toBeInTheDocument(); 
 }); 
